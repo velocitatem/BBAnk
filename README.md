@@ -1,4 +1,4 @@
-![logo](https://www.canva.com/design/DAFb_I5q8iU/view)
+![logo](./logo.png)
 
 # Black Board Quiz to Anki
 
