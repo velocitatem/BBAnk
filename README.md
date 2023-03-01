@@ -8,6 +8,6 @@ This is a simple script to convert a Black Board quiz to an Anki deck. It is not
 1. Download the quiz JSON submission file from Black Board.
 2. Run the script with the JSON file as the first argument and the name of the Anki deck as the second argument.
 ```bash
-python process quiz.json "My Quiz"
+python process.py quiz.json "My Quiz"
 ```
 3. Import the generated Anki deck into Anki.
