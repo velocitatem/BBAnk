@@ -47,7 +47,7 @@ my_model = genanki.Model(
 
 my_deck = genanki.Deck(
     2059400110,
-    sys.argv[1])
+    sys.argv[2])
 
 
 import re
