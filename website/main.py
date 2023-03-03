@@ -2,6 +2,9 @@ import streamlit as st
 from bbanki import convert
 # this is an interface for a user to use the data downloaded from BlackBoard. THis data is a quiz. This will convert that quiz to an anki file.
 
+# set website title
+st.title("BlackBoard Quiz to Anki Converter")
+# set website description
 
 # create an about in the sidebar
 # https://github.com/velocitatem/BBAnki

@@ -1,15 +1,9 @@
 # Black Board Quiz to Anki 🧑‍🏫📥
 
-This is a simple script to convert a Black Board quiz to an Anki deck. It is not perfect, but it works for me. It is not intended to be a general purpose tool, but rather a tool for my own use. I am sharing it in case it is useful to others.
+Makes student life easier by converting Black Board quizzes to Anki flashcards. Save time and get better grades!
 
 ## Usage
-1. Download the quiz JSON submission file from Black Board.
-2. Run the script with the JSON file as the first argument and the name of the Anki deck as the second argument.
-```bash
-python process.py quiz.json "My Quiz"
-```
-3. Import the generated Anki deck into Anki.
-
+You can use the online version of this tool at [this website](https://bbanki.streamlit.app/). Or locally host that website yourself with `streamlit run website/main.py`.
 
 # Downloading Quizes
 This algorithm makes use of [browser-hook](https://github.com/velocitatem/browser-hook) to download the quizes, you can find some boiler plate in `main.py`.
