@@ -19,13 +19,16 @@ def convert(data, quiz_name):
         att = question['questionAttempt']
         qType = att['questionType']
         # check if qtyp is multipleanswer
-        if qType == 'multipleanswer':
-            q = att['question']
-            qText = q['questionText']['displayText']
-            answers = [] # list of answers [answer, correct]
-            for ans in q['answers']:
-                answers.append([ans['answerText']['displayText'], ans['correctAnswer']])
-            qList.append([qType, qText, answers])
+        try:
+            if qType == 'multipleanswer':
+                q = att['question']
+                qText = q['questionText']['displayText']
+                answers = [] # list of answers [answer, correct]
+                for ans in q['answers']:
+                    answers.append([ans['answerText']['displayText'], ans['correctAnswer']])
+                qList.append([qType, qText, answers])
+        except:
+            pass
 
 
     # create an anki deck
