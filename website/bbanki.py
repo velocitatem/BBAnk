@@ -24,11 +24,18 @@ def convert(data, quiz_name):
                 q = att['question']
                 qText = q['questionText']['displayText']
                 answers = [] # list of answers [answer, correct]
-                for ans in q['answers']:
-                    answers.append([ans['answerText']['displayText'], ans['correctAnswer']])
+                for ans in range(len(q['answers'])):
+                    ans = q['answers'][ans]
+                    if 'correctAnswer' in ans.keys():
+                        isCorrect = ans['correctAnswer']
+                    else:
+                        isCorrect = att['givenAnswer'][q['answers'].index(ans)]
+                    answers.append([ans['answerText']['displayText'], isCorrect])
                 qList.append([qType, qText, answers])
-        except:
+        except Exception as e:
+            print("Error: " + str(e))
             pass
+            break;
 
 
     # create an anki deck
@@ -74,7 +81,8 @@ def convert(data, quiz_name):
         options = '<br>'.join(options)
         # add br at start
         options = f'<br>{options}'
-        answer = [x[0] for x in q[2] if x[1] == True][0]
+        answer = [x[0] for x in q[2] if x[1] == True]
+        answer = '<br>'.join(answer)
         my_note = genanki.Note(
             model=my_model,
             fields=[q[1], options, answer])

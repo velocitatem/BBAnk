@@ -19,16 +19,13 @@ def convert(data, quiz_name):
         att = question['questionAttempt']
         qType = att['questionType']
         # check if qtyp is multipleanswer
-        try:
-            if qType == 'multipleanswer':
-                q = att['question']
-                qText = q['questionText']['displayText']
-                answers = [] # list of answers [answer, correct]
-                for ans in q['answers']:
-                    answers.append([ans['answerText']['displayText'], ans['correctAnswer']])
-                qList.append([qType, qText, answers])
-        except:
-            pass
+        if qType == 'multipleanswer':
+            q = att['question']
+            qText = q['questionText']['displayText']
+            answers = [] # list of answers [answer, correct]
+            for ans in q['answers']:
+                answers.append([ans['answerText']['displayText'], ans['correctAnswer']])
+            qList.append([qType, qText, answers])
 
 
     # create an anki deck
@@ -84,5 +81,4 @@ def convert(data, quiz_name):
     # add timestamp to quiz_name to make it unique
     import time
     quiz_name = f"{quiz_name}_{time.time()}"
-    genanki.Package(my_deck).write_to_file(f'{quiz_name}.apkg')
-    return f'{quiz_name}.apkg'
+    return genanki.Package(my_deck).write_to_file(f'{quiz_name}.apkg')
