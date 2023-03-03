@@ -9,3 +9,7 @@ This is a simple script to convert a Black Board quiz to an Anki deck. It is not
 python process.py quiz.json "My Quiz"
 ```
 3. Import the generated Anki deck into Anki.
+
+
+# Downloading Quizes
+This algorithm makes use of [browser-hook](https://github.com/velocitatem/browser-hook) to download the quizes, you can find some boiler plate in `main.py`.

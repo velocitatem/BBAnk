@@ -1,10 +1,11 @@
-request = {
-    "url": "https://blackboard.ie.edu/learn/api/v1/courses/_42717_1/gradebook/attempts/_1321632_1/assessment/answers/grades?expand=questionAttempt.question,questionAttempt.answerCorrectness",
-    "method": "GET"
-}
+def extractData(webPath):
+    # example web path: https://blackboard.ie.edu/ultra/courses/_42717_1/outline/assessment/_790262_1/overview/attempt/_1356930_1/review/inline-feedback?attemptId=_1356930_1&mode=inline&columnId=_193298_1&contentId=_790262_1&courseId=_42717_1
+    # target url: https://blackboard.ie.edu/learn/api/v1/courses/_42717_1/gradebook/attempts/_1321632_1/assessment/answers/grades?expand=questionAttempt.question,questionAttempt.answerCorrectness
+    course = webPath.split("/")[5]
+    attempt = webPath.split("/")[11]
+    return (course, attempt)
 
-course = "_42717_1"
-assessments = ["_1285450_1", "_1321632_1", "_1334891_1", "_1357133_1"]
+
 
 import base64
 import requests
@@ -12,7 +13,9 @@ import json
 import time
 
 
-def download_assesment(course, assessment):
+def download_assesment(link):
+    course, assessment = extractData(link)
+    print(course, assessment)
     request = {
         "url": "https://blackboard.ie.edu/learn/api/v1/courses/" + course + "/gradebook/attempts/" + assessment + "/assessment/answers/grades?expand=questionAttempt.question,questionAttempt.answerCorrectness",
         "method": "GET"
@@ -29,11 +32,11 @@ def download_assesment(course, assessment):
     url2 = "http://localhost:3020/get/stack"
     res2 = requests.get(url2)
 
-    data = json.loads(res2.content)[-1]
+    data = json.loads(res2.content)
     return data
 
-for assessment in assessments:
-    data = download_assesment(course, assessment)
-    # save data to file with assesment name
-    with open(assessment + ".json", "w") as f:
-        f.write(json.dumps(data))
+
+data = download_assesment("https://blackboard.ie.edu/ultra/courses/_42717_1/outline/assessment/_790262_1/overview/attempt/_1356930_1/review/inline-feedback?attemptId=_1356930_1&mode=inline&columnId=_193298_1&contentId=_790262_1&courseId=_42717_1")
+# save data to file
+with open('data.json', 'w') as outfile:
+    json.dump(data, outfile)
