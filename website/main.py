@@ -22,7 +22,6 @@ st.sidebar.markdown(
 )
 
 
-st.title("BlackBoard Quiz to Anki")
 st.write("This is a tool to convert a BlackBoard quiz to an anki file. This is a work in progress. Please report any bugs to the github page.")
 
 # Step 1: In blackboard open the graded quiz
