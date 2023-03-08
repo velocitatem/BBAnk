@@ -14,13 +14,25 @@ st.sidebar.info(
     This is a tool to convert BlackBoard quizzes to Anki flashcards.
     """
 )
-# mention the github repo
-st.sidebar.markdown(
-    """
-    [GitHub](https://github.com/velocitatem/BBAnki)
-    """
-)
 
+st.sidebar.markdown("""
+<!-- Place this tag in your head or just before your close body tag. -->
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+""", unsafe_allow_html=True)
+
+
+# create an issue in the sidebar https://github.com/velocitatem/BBAnki/issues/new
+st.sidebar.markdown("""
+<!-- Place this tag where you want the button to render. -->
+<a class="github-button" href="https://github.com/velocitatem/BBanki/issues" data-icon="octicon-issue-opened" data-size="large" aria-label="Issue velocitatem/BBanki on GitHub">Report an Issue</a>
+""", unsafe_allow_html=True)
+
+
+# Leave a star on the repo
+st.sidebar.markdown("""
+<!-- Place this tag where you want the button to render. -->
+<a class="github-button" href="https://github.com/velocitatem/BBanki" data-icon="octicon-star" data-size="large" aria-label="Star velocitatem/BBanki on GitHub">Leave a star!</a>
+""", unsafe_allow_html=True)
 
 st.write("This is a tool to convert a BlackBoard quiz to an anki file. This is a work in progress. Please report any bugs to the github page.")
 
@@ -49,6 +61,8 @@ quiz_name_in = st.text_input("What is this quiz called?", "Quiz Name")
 
 
 if st.button("Convert"):
+    print("Converting")
+    print(quiz_data)
     output= convert(quiz_data, quiz_name_in)
     # read teh file and download it
     with open(output, 'rb') as f:
